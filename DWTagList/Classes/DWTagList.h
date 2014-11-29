@@ -11,16 +11,17 @@
 
 @interface DWTagList : UIScrollView
 {
-    UIView      *view;
-    NSArray     *textArray;
-    CGSize      sizeFit;
-    UIColor     *lblBackgroundColor;
+  UIView      *view;
+  NSArray     *textArray;
+  CGSize      sizeFit;
+  UIColor     *lblBackgroundColor;
 }
 
 @property (nonatomic) BOOL viewOnly;
 @property (nonatomic) BOOL showTagMenu;
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) NSArray *textArray;
+@property (nonatomic, strong) NSMutableArray *selectedArray;
 @property (nonatomic, weak) id<DWTagListDelegate> tagDelegate;
 @property (nonatomic, strong) UIColor *highlightedBackgroundColor;
 @property (nonatomic) BOOL automaticResize;
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *textShadowColor;
 @property (nonatomic, assign) CGSize textShadowOffset;
+@property (nonatomic, strong) UIColor *selectedTagBackgroundColor;
 
 - (void)setTagBackgroundColor:(UIColor *)color;
 - (void)setTagHighlightColor:(UIColor *)color;
@@ -50,6 +52,7 @@
 
 @property (nonatomic, strong) UIButton              *button;
 @property (nonatomic, strong) UILabel               *label;
+@property (nonatomic, readwrite) BOOL isSelected;
 @property (nonatomic, weak)   id<DWTagViewDelegate> delegate;
 
 - (void)updateWithString:(NSString*)text
@@ -66,7 +69,6 @@
 - (void)setTextShadowOffset:(CGSize)textShadowOffset;
 
 @end
-
 
 @protocol DWTagListDelegate <NSObject>
 
