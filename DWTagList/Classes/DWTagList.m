@@ -158,6 +158,11 @@
       tagView = [[DWTagView alloc] init];
     }
     
+    if (_useCustomHeight) {
+      tagView.useCustomHeight = _useCustomHeight;
+      tagView.customHeight = _customHeight;
+    }
+    
     [tagView updateWithString:text
                          font:self.font
            constrainedToWidth:self.frame.size.width - (self.horizontalPadding * 2)
@@ -389,8 +394,14 @@
   textSize.width = MAX(textSize.width, minimumWidth);
   textSize.height += padding.height*2;
   
-  self.frame = CGRectMake(0, 0, textSize.width+padding.width*2, textSize.height);
-  _label.frame = CGRectMake(padding.width, 0, MIN(textSize.width, self.frame.size.width), textSize.height);
+  if (_useCustomHeight) {
+    self.frame = CGRectMake(0, 0, textSize.width+padding.width*2, _customHeight);
+    _label.frame = CGRectMake(padding.width, 0, MIN(textSize.width, self.frame.size.width), _customHeight);
+  } else {
+    self.frame = CGRectMake(0, 0, textSize.width+padding.width*2, textSize.height);
+    _label.frame = CGRectMake(padding.width, 0, MIN(textSize.width, self.frame.size.width), textSize.height);
+  }
+  
   _label.font = font;
   
   [_button setAccessibilityLabel:self.label.text];

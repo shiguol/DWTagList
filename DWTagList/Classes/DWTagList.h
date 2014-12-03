@@ -38,6 +38,8 @@
 @property (nonatomic, strong) UIColor *textShadowColor;
 @property (nonatomic, assign) CGSize textShadowOffset;
 @property (nonatomic, strong) UIColor *selectedTagBackgroundColor;
+@property (nonatomic, assign) BOOL useCustomHeight;
+@property (nonatomic, assign) CGFloat customHeight;
 
 - (void)setTagBackgroundColor:(UIColor *)color;
 - (void)setTagHighlightColor:(UIColor *)color;
@@ -54,6 +56,8 @@
 @property (nonatomic, strong) UILabel               *label;
 @property (nonatomic, readwrite) BOOL isSelected;
 @property (nonatomic, weak)   id<DWTagViewDelegate> delegate;
+@property (nonatomic, assign) BOOL useCustomHeight;
+@property (nonatomic, assign) CGFloat customHeight;
 
 - (void)updateWithString:(NSString*)text
                     font:(UIFont*)font
