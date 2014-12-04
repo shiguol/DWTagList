@@ -40,6 +40,7 @@
 @property (nonatomic, strong) UIColor *selectedTagBackgroundColor;
 @property (nonatomic, assign) BOOL useCustomHeight;
 @property (nonatomic, assign) CGFloat customHeight;
+@property (nonatomic, readwrite) BOOL centerAlign;
 
 - (void)setTagBackgroundColor:(UIColor *)color;
 - (void)setTagHighlightColor:(UIColor *)color;

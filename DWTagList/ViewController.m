@@ -30,6 +30,7 @@
   _tagList = [[DWTagList alloc] initWithFrame:CGRectMake(0.0f,
                                                          70.0f,
                                                          self.view.bounds.size.width, 250.0f)];
+  _tagList.centerAlign = YES;
   [_tagList setLabelMargin:20];
   [_tagList setHorizontalPadding:20];
   [_tagList setUseCustomHeight:YES];

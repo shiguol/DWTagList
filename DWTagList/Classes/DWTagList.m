@@ -173,7 +173,7 @@
     
     if (gotPreviousFrame) {
       CGRect newRect = CGRectZero;
-      if (previousFrame.origin.x + previousFrame.size.width + tagView.frame.size.width + self.labelMargin > self.frame.size.width - _horizontalPadding) {
+      if (previousFrame.origin.x + previousFrame.size.width + tagView.frame.size.width + self.labelMargin > self.frame.size.width - (_centerAlign?_horizontalPadding:0)) {
         newRect.origin = CGPointMake(0, previousFrame.origin.y + tagView.frame.size.height + self.bottomMargin);
         
         ii++;
@@ -250,10 +250,12 @@
       
       for (int j = 0; j < a.count; j++) {
         t = [a objectAtIndex:j];
-        t.frame = CGRectMake(t.frame.origin.x + f + (a.count==1?_horizontalPadding:0),
-                             t.frame.origin.y,
-                             t.frame.size.width,
-                             t.frame.size.height);
+        if (_centerAlign) {
+          t.frame = CGRectMake(t.frame.origin.x + f + (a.count==1?_horizontalPadding:0),
+                               t.frame.origin.y,
+                               t.frame.size.width,
+                               t.frame.size.height);
+        }
       }
     }
   }
