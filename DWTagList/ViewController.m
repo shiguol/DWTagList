@@ -27,20 +27,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  _tagList = [[DWTagList alloc] initWithFrame:CGRectMake(20.0f,
+  _tagList = [[DWTagList alloc] initWithFrame:CGRectMake(0.0f,
                                                          70.0f,
-                                                         self.view.bounds.size.width-40.0f, 250.0f)];
+                                                         self.view.bounds.size.width, 250.0f)];
   [_tagList setLabelMargin:20];
   [_tagList setHorizontalPadding:20];
   [_tagList setUseCustomHeight:YES];
   [_tagList setCustomHeight:34];
   [_tagList setAutomaticResize:YES];
-  _array = [[NSMutableArray alloc] initWithObjects:@"Foo", @"Tag Label 1", @"Tag Label 2", @"Tag Label 3", @"Tag Label 4", @"Tag Label 5---------", @"Tag Label 1", @"Tag Label 2-------------", @"Tag Label 3", @"Tag Label 4", @"Tag Label 5",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"FooA",@"FooA",@"FooA",@"FooA",@"FooA",@"FooA",@"FooA",@"FooA",@"FooA",@"FooA", @"Foo",
-            @"Tag Label 1",
-            @"Tag Label 2",
-            @"Tag Label 3",
-            @"Tag Label 4",
-            @"Long long long long long long Tag", nil];
+  _array = [[NSMutableArray alloc] initWithObjects:@"Tag Label 5",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"FooA",@"FooA", @"Long long long long long long Tag", nil];
   [_tagList setTags:_array];
   [_tagList setTagDelegate:self];
   

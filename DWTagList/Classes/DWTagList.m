@@ -148,6 +148,7 @@
   BOOL gotPreviousFrame = NO;
   
   NSInteger tag = 0;
+  NSInteger ii = 0;
   for (id text in textArray) {
     DWTagView *tagView;
     if (tagViews.count > 0) {
@@ -172,14 +173,18 @@
     
     if (gotPreviousFrame) {
       CGRect newRect = CGRectZero;
-      if (previousFrame.origin.x + previousFrame.size.width + tagView.frame.size.width + self.labelMargin > self.frame.size.width) {
+      if (previousFrame.origin.x + previousFrame.size.width + tagView.frame.size.width + self.labelMargin > self.frame.size.width - _horizontalPadding) {
         newRect.origin = CGPointMake(0, previousFrame.origin.y + tagView.frame.size.height + self.bottomMargin);
+        
+        ii++;
       } else {
         newRect.origin = CGPointMake(previousFrame.origin.x + previousFrame.size.width + self.labelMargin, previousFrame.origin.y);
       }
       newRect.size = tagView.frame.size;
       [tagView setFrame:newRect];
     }
+    
+    tagView.iLineIndex = ii;
     
     previousFrame = tagView.frame;
     gotPreviousFrame = YES;
@@ -198,9 +203,7 @@
     [tagView setTextShadowOffset:self.textShadowOffset];
     [tagView setTag:tag];
     [tagView setDelegate:self];
-    
     tag++;
-    
     [self addSubview:tagView];
     
     if (!_viewOnly) {
@@ -213,6 +216,47 @@
   
   sizeFit = CGSizeMake(self.frame.size.width, previousFrame.origin.y + previousFrame.size.height + self.bottomMargin + 1.0f);
   self.contentSize = sizeFit;
+  NSArray *a = self.subviews;
+  NSMutableArray *b = [NSMutableArray array];
+  for (int c = 0; c < a.count; c++)
+  {
+    UIView *d = [a objectAtIndex:c];
+    if ([d isKindOfClass:[DWTagView class]])
+      [b addObject:d];
+  }
+  
+  NSMutableArray *t = [NSMutableArray array];
+  int j = ((DWTagView *)[b lastObject]).iLineIndex;
+  for (int i = 0; i <= j; i++)
+    [t addObject:[NSMutableArray array]];
+  
+  for (int i = 0; i < b.count; i++) {
+    DWTagView *h = [b objectAtIndex:i];
+    int j = h.iLineIndex;
+    [[t objectAtIndex:j] addObject:h];
+  }
+  
+  if (b.count) {
+    for (int i = 0; i < t.count; i++) {
+      NSArray *a = [t objectAtIndex:i];
+      int k = 0;
+      DWTagView *t = nil;
+      for (int j = 0; j < a.count; j++) {
+        t = [a objectAtIndex:j];
+        k += t.frame.size.width;
+      }
+      
+      int f = self.frame.size.width/2 - k/2 - _horizontalPadding;
+      
+      for (int j = 0; j < a.count; j++) {
+        t = [a objectAtIndex:j];
+        t.frame = CGRectMake(t.frame.origin.x + f + (a.count==1?_horizontalPadding:0),
+                             t.frame.origin.y,
+                             t.frame.size.width,
+                             t.frame.size.height);
+      }
+    }
+  }
 }
 
 - (CGSize)fittedSize

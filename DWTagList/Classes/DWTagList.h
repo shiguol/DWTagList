@@ -58,6 +58,7 @@
 @property (nonatomic, weak)   id<DWTagViewDelegate> delegate;
 @property (nonatomic, assign) BOOL useCustomHeight;
 @property (nonatomic, assign) CGFloat customHeight;
+@property (nonatomic, readwrite) int iLineIndex;
 
 - (void)updateWithString:(NSString*)text
                     font:(UIFont*)font
