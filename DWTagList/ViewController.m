@@ -37,7 +37,13 @@
   [_tagList setCustomHeight:34];
   [_tagList setAutomaticResize:YES];
   _array = [[NSMutableArray alloc] initWithObjects:@"Tag Label 5",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"Foo",@"FooA",@"FooA", @"Long long long long long long Tag", nil];
+  NSMutableArray *selectedArray = [NSMutableArray array];
+  for (int i = 0; i < _array.count; i++) {
+    [selectedArray addObject:[NSNumber numberWithInt:arc4random()%2]];
+  }
+  [_tagList setSelectedArray:selectedArray];
   [_tagList setTags:_array];
+  
   [_tagList setTagDelegate:self];
   
   // Customisation

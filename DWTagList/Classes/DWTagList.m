@@ -81,10 +81,12 @@
 - (void)setTags:(NSArray *)array
 {
   textArray = [[NSArray alloc] initWithArray:array];
-  
-  self.selectedArray = [NSMutableArray array];
-  for (id obj in array) {
-    [self.selectedArray addObject:@(0)];
+
+  if (!self.selectedArray || (0 == self.selectedArray.count)) {
+    self.selectedArray = [NSMutableArray array];
+    for (id obj in array) {
+      [self.selectedArray addObject:@(0)];
+    }
   }
   
   sizeFit = CGSizeZero;
@@ -188,6 +190,15 @@
     
     previousFrame = tagView.frame;
     gotPreviousFrame = YES;
+    
+    if (self.selectedArray && self.selectedArray.count) {
+      int jn = [[self.selectedArray objectAtIndex:tagView.tag] intValue];
+      if (jn) {
+        tagView.isSelected = NO;
+      } else {
+        tagView.isSelected = YES;
+      }
+    }
     
     if (tagView.isSelected) {
       [tagView setBackgroundColor:self.selectedTagBackgroundColor];
