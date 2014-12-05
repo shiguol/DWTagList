@@ -194,9 +194,9 @@
     if (self.selectedArray && self.selectedArray.count) {
       int jn = [[self.selectedArray objectAtIndex:tagView.tag] intValue];
       if (jn) {
-        tagView.isSelected = NO;
-      } else {
         tagView.isSelected = YES;
+      } else {
+        tagView.isSelected = NO;
       }
     }
     
