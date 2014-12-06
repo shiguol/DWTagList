@@ -192,7 +192,7 @@
     gotPreviousFrame = YES;
     
     if (self.selectedArray && self.selectedArray.count) {
-      int jn = [[self.selectedArray objectAtIndex:tagView.tag] intValue];
+      int jn = [[self.selectedArray objectAtIndex:tag] intValue];
       if (jn) {
         tagView.isSelected = YES;
       } else {
